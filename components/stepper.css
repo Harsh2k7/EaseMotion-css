@@ -1,0 +1,122 @@
+/* ==========================================
+   EaseMotion - Animated Stepper Component
+   ========================================== */
+
+:root {
+  --stepper-primary: #007bff;
+  --stepper-success: #28a745;
+  --stepper-gray: #e0e0e0;
+  --stepper-text-muted: #6c757d;
+  --stepper-transition: all 0.3s ease-in-out;
+}
+
+/* Base Stepper Container (Horizontal) */
+.ease-stepper {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  max-width: 800px;
+  margin: 2rem auto;
+  position: relative;
+}
+
+/* Stepper Step */
+.ease-step {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+  flex: 1;
+  z-index: 1;
+}
+
+/* Circle Indicator */
+.ease-step-circle {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background-color: #fff;
+  border: 2px solid var(--stepper-gray);
+  color: var(--stepper-text-muted);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-weight: bold;
+  transition: var(--stepper-transition);
+}
+
+/* Step Label */
+.ease-step-label {
+  margin-top: 8px;
+  font-size: 0.9rem;
+  color: var(--stepper-text-muted);
+  transition: var(--stepper-transition);
+}
+
+/* Animated Connector Line */
+.ease-step:not(:last-child)::after {
+  content: '';
+  position: absolute;
+  top: 20px;
+  left: 50%;
+  width: 100%;
+  height: 2px;
+  background-color: var(--stepper-gray);
+  z-index: -1;
+  transition: var(--stepper-transition);
+}
+
+/* Active State */
+.ease-step.active .ease-step-circle {
+  border-color: var(--stepper-primary);
+  color: var(--stepper-primary);
+  box-shadow: 0 0 10px rgba(0, 123, 255, 0.3);
+  transform: scale(1.1);
+}
+
+.ease-step.active .ease-step-label {
+  color: var(--stepper-primary);
+  font-weight: bold;
+}
+
+/* Completed State */
+.ease-step.completed .ease-step-circle {
+  background-color: var(--stepper-success);
+  border-color: var(--stepper-success);
+  color: #fff;
+}
+
+.ease-step.completed::after {
+  background-color: var(--stepper-success);
+}
+
+.ease-step.completed .ease-step-label {
+  color: var(--stepper-success);
+}
+
+/* Vertical Stepper Variant */
+.ease-stepper-vertical {
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.ease-stepper-vertical .ease-step {
+  flex-direction: row;
+  align-items: center;
+  margin-bottom: 2rem;
+  width: 100%;
+}
+
+.ease-stepper-vertical .ease-step-label {
+  margin-top: 0;
+  margin-left: 12px;
+}
+
+.ease-stepper-vertical .ease-step:not(:last-child)::after {
+  top: 40px;
+  left: 20px;
+  width: 2px;
+  height: 100%;
+}
+
